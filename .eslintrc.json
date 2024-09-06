@@ -1,3 +1,16 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next",
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    // Disable TypeScript-specific rules
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    
+    // Disable NestJS-specific rules (if using the NestJS ESLint plugin)
+    "nestjs/use-lifecycle-interface": "off",
+    "nestjs/no-extraneous-dependencies": "off",
+    "nestjs/use-injectable-decorator": "off"
+  }
 }

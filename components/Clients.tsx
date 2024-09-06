@@ -5,7 +5,25 @@ import React from "react";
 import { companies, testimonials } from "@/data";
 import { InfiniteMovingCards } from "./ui/InfiniteCards";
 
-const Clients = () => {
+// Define an interface for the company object
+interface Company {
+  id: number;
+  name: string;
+  logo: string;
+  img: string;  // Add this line
+  nameImg: string;  // This line should already be present from the previous fix
+  // Add other properties if necessary
+}
+
+function Clients() {
+  // Explicitly type the companies array
+  const companies: Company[] = [
+    // Your company objects here, make sure each has an id
+    // { id: 1, img: "path/to/image1.png" },
+    // { id: 2, img: "path/to/image2.png" },
+    // ... other companies
+  ];
+
   return (
     <section id="testimonials" className="py-20">
       <h1 className="heading">

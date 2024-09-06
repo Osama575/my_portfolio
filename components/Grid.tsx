@@ -20,7 +20,12 @@ const Grid = () => {
           >
             {item.id === 5 && (
               <div className="mt-4">
-                <MagicButton href="/blog">View my Blog</MagicButton>
+                <MagicButton 
+                  title="View my Blog" 
+                  icon={null} 
+                  position="center" 
+                  handleClick={() => window.location.href = '/blog'} 
+                />
               </div>
             )}
           </BentoGridItem>
