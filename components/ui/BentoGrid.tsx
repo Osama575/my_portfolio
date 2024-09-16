@@ -6,7 +6,7 @@ import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 
 export const BentoGrid = ({
   className,
@@ -35,8 +35,7 @@ export const BentoGridItem = ({
   img,
   imgClassName,
   titleClassName,
-  spareImg,
-  children, // Add this line
+  children,
 }: {
   className?: string;
   id: number;
@@ -45,8 +44,7 @@ export const BentoGridItem = ({
   img?: string;
   imgClassName?: string;
   titleClassName?: string;
-  spareImg?: string;
-  children?: React.ReactNode; // Add this line
+  children?: React.ReactNode;
 }) => {
   const leftLists = ["PostgreSql", "Nestjs", "Laravel", "Express"];
   const rightLists = ["MySql", "Monogodb", "Typescript", "C#"];
@@ -71,10 +69,6 @@ export const BentoGridItem = ({
     window.open("https://medium.com/@info.drosama", "_blank");
   };
 
-  const handleEmailContact = () => {
-    window.open("https://calendly.com/foresightagencies", "_blank");
-  };
-
   return (
     <div
       className={cn(
@@ -88,50 +82,29 @@ export const BentoGridItem = ({
       }}
     >
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
-        <div className="w-full h-full absolute">
+        <div className="w-full h-full absolute inset-0">
           {img && (
             <Image
               src={img}
-              alt={img}
+              alt={title?.toString() || "Image"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
-              className={cn(imgClassName)}
+              className={cn(imgClassName, "z-0")}
             />
           )}
         </div>
-        <div
-          className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"
-            } `}
-        >
-          {spareImg && (
-            <Image
-              src={spareImg}
-              alt={spareImg}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-            />
-          )}
-        </div>
-        {id === 6 && (
-          <BackgroundGradientAnimation>
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
-          </BackgroundGradientAnimation>
-        )}
 
         <div
           className={cn(
             titleClassName,
-            "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+            "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10 z-10"
           )}
         >
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
+          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3]">
             {description}
           </div>
-          <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
-          >
+          <div className={`font-sans text-lg lg:text-3xl max-w-96 font-bold mb-4`}>
             {title}
           </div>
 
@@ -167,9 +140,7 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="mt-5 relative">
-              <div
-                className={`absolute -bottom-5 right-0 ${linkOpened ? "block" : "block"}`}
-              >
+              <div className={`absolute -bottom-5 right-0 ${linkOpened ? "block" : "block"}`}>
                 <Lottie options={defaultOptions} height={200} width={400} />
               </div>
 
@@ -183,7 +154,7 @@ export const BentoGridItem = ({
             </div>
           )}
           {id === 5 && (
-            <div className="mt-5 relative">
+            <div className="mt-auto">
               <MagicButton
                 title="View Blog"
                 icon={<IoCopyOutline />}
@@ -193,20 +164,9 @@ export const BentoGridItem = ({
               />
             </div>
           )}
-          {id === 1 && (
-            <div className="mt-5 relative">
-              <MagicButton
-                title="Let's get in touch"
-                icon={<IoMailOutline />}
-                position="left"
-                handleClick={handleEmailContact}
-                otherClasses="!bg-[#161A31]"
-              />
-            </div>
-          )}
         </div>
       </div>
-      {children} {/* Add this line to render the children */}
+      {children}
     </div>
   );
 };
