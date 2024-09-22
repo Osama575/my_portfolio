@@ -61,7 +61,7 @@ export const BentoGridItem = ({
   };
 
   const handleOpenCV = () => {
-    window.open("https://exportdata123.blob.core.windows.net/exportdatastaging/Osama_Okunbo_CV_.pdf?sp=r&st=2024-09-05T18:16:35Z&se=2026-06-09T02:16:35Z&spr=https&sv=2022-11-02&sr=b&sig=Ay415wfPYn9clBBXQW4zHk3meVS5GtV%2B7hxaOR3sak4%3D", "_blank");
+    window.open("https://shorturl.at/Jatc0", "_blank");
     setLinkOpened(true);
   };
 
