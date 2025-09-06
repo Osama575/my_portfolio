@@ -193,29 +193,29 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Engineering Manager - Francheye",
-    desc: "Lead a team of 9 engineers, architected and built major parts of our backend microservices, optimized db queries with indexing and added caching strategies",
+    title: "DevSecOps Engineer — ImmiBuddy (08/2024 – Present)",
+    desc: "Shift-left S-SDLC with GitHub Actions (tests, SAST/DAST, policy gates); SBOMs and image scanning; signing/attestations; AWS Config/Azure Policy guardrails; least-privilege IAM/Entra; centralized secrets with rotation; short-lived OIDC; EKS/AKS hardening (Pod Security, Kyverno/OPA, non-root, read-only FS, NetworkPolicies); STRIDE models; ISO 27001 scope/SoA/evidence; OpenTelemetry → ELK with SLO dashboards; Zero Trust and agentic-AI SOC PoCs; improved MTTD/MTTR.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Lead Backend Developer - Supplya",
-    desc: "Built a robust NestJs microservice, integrated payments and deployed using azure app service, configured various backend environments and integrated ci/cd using github actions.",
-    className: "md:col-span-2", // change to md:col-span-2
+    title: "DevSecOps Engineer — Supplya (11/2023 – 08/2024)",
+    desc: "Multi-cloud (AWS + Azure) with one pipeline pattern (GitHub Actions + Azure DevOps); reusable Terraform modules; AWS Config/Azure Policy guardrails; workload identity and least-privilege via Entra ID/IAM Identity Center; VPC/VNet segmentation, private endpoints, and service-mesh mTLS; IaC/app security scanning (tfsec, Checkov, Trivy/Grype) with SLAs; OpenTelemetry telemetry; DR and failover runbooks; GDPR/PCI alignment.",
+    className: "md:col-span-2",
     thumbnail: "/exp2.svg",
   },
   {
     id: 3,
-    title: "Backend Developer & Solutions Architect - Mangospace",
-    desc: "Architected and built the user managements service using laravel, worked with the head of AI to build out and integrate the AI model into our systems, used mongodb time series and AWS SQS for asynchronus communication between services",
-    className: "md:col-span-2", // change to md:col-span-2
+    title: "DevSecOps Engineer — Mango Space (09/2021 – 11/2023)",
+    desc: "GitOps for EKS; AWS security baselines in Terraform; signed container images; privacy-first data flows and model registry with artifact lineage; fintech escrow controls: OIDC/mTLS service identity, idempotent webhooks, WAF rules, rate limits, reconciliation playbooks; secret removal and rotation; centralized observability and on-call; stronger incident response and predictable weekly releases.",
+    className: "md:col-span-2",
     thumbnail: "/exp3.svg",
   },
   {
     id: 4,
-    title: "Web Developer -  iPAS Consulting",
-    desc: "Worked with wordpress, html, css and react to build functional and responsive websites, took part in requirement gathering and brain storming sessions geared at solving our clients business problems using technology.",
+    title: "Software Engineer — IPAS Consulting (05/2019 – 08/2021)",
+    desc: "Architected and delivered custom apps across finance/healthcare/retail; serverless backends on AWS/Azure (Lambda, API Gateway, Functions) to cut cost; containerized and orchestrated workloads with Kubernetes (~99.9% uptime); designed REST APIs (Node.js/.NET) with JWT (>1M req/mo); automated testing with Jest and Sentry to reduce bugs ~40%.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
   },
