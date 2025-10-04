@@ -1,7 +1,7 @@
 "use client";
 import React, { useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import confettiAnimation from "@/data/confetti.json";
 
 type SpeedOption = "week" | "month" | "flexible" | "";
@@ -131,17 +131,18 @@ export default function FitCheckPage() {
   const confettiOptions = {
     loop: false,
     autoplay: true,
-    animationData: confettiAnimation as any,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
   };
 
   return (
     <main className="relative min-h-screen bg-black-100 text-white flex flex-col items-center sm:px-10 px-5 py-20">
       {showConfetti && (
         <div className="pointer-events-none fixed inset-0 z-[6000] flex items-center justify-center">
-          <Lottie options={confettiOptions} height={400} width={400} />
+          <Lottie
+            animationData={confettiAnimation as any}
+            loop={confettiOptions.loop}
+            autoplay={confettiOptions.autoplay}
+            style={{ height: 400, width: 400 }}
+          />
         </div>
       )}
       <div className="w-full max-w-3xl">
