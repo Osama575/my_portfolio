@@ -3,6 +3,8 @@ import Stripe from "stripe";
 import path from "path";
 import fs from "fs/promises";
 
+// Route to download the PDF file
+
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 const stripe = stripeSecretKey
