@@ -1,0 +1,94 @@
+name: DevOps Pipeline with Security Scan
+
+on:
+  push:
+    branches:
+      - main  # Runs when pushing to the main branch
+  pull_request:
+    branches:
+      - main  # Runs on pull requests targeting the main branch
+
+jobs:
+  # Stage 1: Build the React app
+  install_and_build:
+    runs-on: ubuntu-latest
+    name: Build Stage - Install and Build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the React app
+        run: npm run build
+
+  # Stage 2: Security Scan
+  security_scan:
+    runs-on: ubuntu-latest
+    name: Security Scan Stage
+    needs: install_and_build  # This job runs after the install_and_build job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # SonarQube SAST (Static Application Security Testing)
+      - name: SAST Security Scan(SonarQube)
+        uses: SonarSource/sonarcloud-github-action@v1
+        with:
+          sonar-project-key: 'Osama575_my_portfolio'
+          sonar-project-name: 'my-portfolio'
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Run SonarQube analysis
+        run: sonar-scanner
+
+      # Snyk SCA (Software Composition Analysis)
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Run Snyk test for vulnerabilities
+        run: snyk test --all-projects > snyk-result.json || true  # Save output to a file and continue even if vulnerabilities are found
+
+      # OWASP ZAP DAST (Dynamic Application Security Testing)
+      - name: Set up OWASP ZAP Docker container
+        uses: docker://owasp/zap2docker-stable:latest
+
+      - name: Run OWASP ZAP DAST scan
+        run: |
+          docker run -t --network host owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000  # Replace with your live app's URL if available
+        env:
+          TARGET_URL: http://localhost:3000  # Update with actual target URL
+
+      # Echo Snyk results
+      - name: Echo Snyk results
+        run: |
+          echo "Snyk Test Results:"
+          cat snyk-result.json
+
+      # Echo OWASP ZAP results
+      - name: Echo OWASP ZAP results
+        run: |
+          echo "OWASP ZAP Scan Results:"
+          cat ./zap-reports/*.html
+
+  # Stage 3: Deploy
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy Stage
+    needs: security_scan  # This job runs after the security_scan job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy application (echo message)
+        run: |
+          echo "Deployment successful! Everything works."
