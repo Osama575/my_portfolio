@@ -1,6 +1,8 @@
+"use client";
 import { useState } from "react";
 import { IoCopyOutline, IoMailOutline } from "react-icons/io5";
-import Lottie from "react-lottie";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
@@ -54,10 +56,6 @@ export const BentoGridItem = ({
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
   };
 
   const handleOpenCV = () => {
@@ -87,10 +85,8 @@ export const BentoGridItem = ({
             <Image
               src={img}
               alt={title?.toString() || "Image"}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              className={cn(imgClassName, "z-0")}
+              fill
+              className={cn("object-cover object-center", imgClassName, "z-0")}
             />
           )}
         </div>
@@ -141,7 +137,12 @@ export const BentoGridItem = ({
           {id === 6 && (
             <div className="mt-5 relative">
               <div className={`absolute -bottom-5 right-0 ${linkOpened ? "block" : "block"}`}>
-                <Lottie options={defaultOptions} height={200} width={400} />
+                <Lottie
+                  animationData={animationData as any}
+                  loop={defaultOptions.loop}
+                  autoplay={defaultOptions.autoplay}
+                  style={{ height: 200, width: 400 }}
+                />
               </div>
 
               <MagicButton
